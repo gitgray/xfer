@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Appenders>
+        <RollingFile name="debug" fileName="${sys:marprobe.logfile.prefix:-}off-net.debug.log" filePattern="${sys:marprobe.logfile.prefix:-}off-net.debug-%i.log">
+            <PatternLayout pattern="%d %p [%t] %c - %m - %r %n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="4096KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="1"/>    
+        </RollingFile>
+        <RollingFile name="file" fileName="${sys:marprobe.logfile.prefix:-}off-net.info.log" filePattern="${sys:marprobe.logfile.prefix:-}off-net.info-%i.log">
+            <PatternLayout pattern="%d %p [%t] %c - %m - %r %n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="4096KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="1"/>    
+        </RollingFile>
+        <Console name="stdout">
+            <PatternLayout pattern="%d %p [%t] %c - %m - %r %n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="com" level="WARN"/>
+        <Logger name="com.martellotech.marwatch.collectors.smdr" level="DEBUG"/>
+        <Logger name="com.martellotech.marwatch.collectors.k8s.upgrade" level="DEBUG"/>
+        <Logger name="com.martellotech.marwatch.ftpserver" level="TRACE"/>
+        <Logger name="com.martellotech.ra.probe.ProbeTunnel" level="WARN"/>
+        <Logger name="org" level="WARN"/>
+        <Logger name="org.apache.axis" level="WARN"/>
+        <Logger name="org.apache.axis.utils.JavaUtils" level="ERROR"/>
+        <Logger name="org.apache.commons.discovery" level="WARN"/>
+        <Logger name="org.apache.ftpserver" level="TRACE"/>
+        <Logger name="org.apache.http" level="WARN"/>
+        <Logger name="org.jabsorb" level="WARN"/>
+        <Logger name="org.springframework" level="WARN"/>
+		<Logger name="com.martellotech.marwatch.collectors.mitelmslrest" level="DEBUG" />
+		<Logger name="com.martellotech.marwatch.collectors.mitelMBG.rest" level="DEBUG" />
+        <Root level="DEBUG">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="file"/>
+            <AppenderRef ref="debug"/>
+        </Root>      
+    </Loggers>
+</Configuration>
